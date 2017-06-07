@@ -7,3 +7,12 @@ c:\users\michael job\documents\visual studio 2015\Projects\iPixInCsharp\iPix\obj
 c:\users\michael job\documents\visual studio 2015\Projects\iPixInCsharp\iPix\obj\Debug\iPix.exe
 c:\users\michael job\documents\visual studio 2015\Projects\iPixInCsharp\iPix\obj\Debug\iPix.pdb
 C:\Users\Michael Job\Documents\Visual Studio 2015\Projects\iPixInCsharp\iPix\obj\Debug\iPix.csprojResolveAssemblyReference.cache
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\bin\Debug\iPix.exe.config
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.exe
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.pdb
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\bin\Debug\iPix.exe
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\bin\Debug\iPix.pdb
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.csprojResolveAssemblyReference.cache
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.MainForm.resources
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.Properties.Resources.resources
+C:\Users\Michael Job\Source\Repos\iPixCS\iPix\obj\Debug\iPix.csproj.GenerateResource.Cache

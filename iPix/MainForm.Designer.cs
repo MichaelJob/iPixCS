@@ -43,7 +43,6 @@
             this.trackBarGreyscale.Size = new System.Drawing.Size(566, 45);
             this.trackBarGreyscale.TabIndex = 1;
             this.trackBarGreyscale.TickFrequency = 10;
-            this.trackBarGreyscale.Value = 125;
             this.trackBarGreyscale.Scroll += new System.EventHandler(this.trackBarGreyscale_Scroll);
             // 
             // textBoxSliderValue

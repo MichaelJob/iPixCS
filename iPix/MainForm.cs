@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace iPix
@@ -39,7 +40,6 @@ namespace iPix
             int value = 0;
             if (int.TryParse(textBoxSliderValue.Text, out value)) {
                 // Checks the value of the text.
-                Console.WriteLine(value);
                 if (value < 0 || value > 255)
                 {
                     //invalid value: reset to 0
@@ -49,48 +49,36 @@ namespace iPix
                     string message = "You did not enter a valid number. Use the slider... Reset to 0.";
                     string caption = "Error Detected in Input";
                     MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                    DialogResult result;
                     // Displays the MessageBox.
-                    result = MessageBox.Show(message, caption, buttons);
-
-                    if (result == System.Windows.Forms.DialogResult.Yes)
-                    {
-                      
-                    }
-
+                    MessageBox.Show(message, caption, buttons);
                 }
                 else
                 {
                     trackBarGreyscale.Value = value;
                 }
             };
-           // return true;
         }
 
 
         private void adaptPixels()
         {
-            //Console.WriteLine(trackBarGreyscale.Value); //values from 0 to 255;
-            for (int x = 0; x < img.Width; x++)
-            {
-               for (int y = 0; y < img.Height; y++)
+
+                for (int x = 0; x < img.Width; x++)
+                {
+                    for (int y = 0; y < img.Height; y++)
                     {
                         var color = original.GetPixel(x, y);    // Get the color of a pixel within img
-                                                                // Console.WriteLine("PixelBrightness: "+color.GetBrightness()*255);
-                        if ((color.GetBrightness()*255) < trackBarGreyscale.Value)
+                        if ((color.GetBrightness() * 255) < trackBarGreyscale.Value)
                         {
                             img.SetPixel(x, y, Color.OrangeRed);
                         }
                         else
                         {
-                            //Console.WriteLine(x+"/"+y+"  "+color);
                             img.SetPixel(x, y, color);
                         }
-                    }    
-            }
-            pictureBoxMain.Refresh();
+                    }
+                };
+                pictureBoxMain.Refresh();
         }
-
-
     }
 }
