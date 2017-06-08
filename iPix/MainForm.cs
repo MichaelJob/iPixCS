@@ -38,31 +38,40 @@ namespace iPix
         private void validateUserEntry()
         {
             int value = 0;
-            if (int.TryParse(textBoxSliderValue.Text, out value)) {
-                // Checks the value of the text.
+            if (int.TryParse(textBoxSliderValue.Text, out value))
+            {
+                // Checks the value of the text if it could parse to int
                 if (value < 0 || value > 255)
                 {
-                    //invalid value: reset to 0
-                    textBoxSliderValue.Text = "0";
-                    trackBarGreyscale.Value = 0;
-                    // Initializes the variables to pass to the MessageBox.Show method.
-                    string message = "You did not enter a valid number. Use the slider... Reset to 0.";
-                    string caption = "Error Detected in Input";
-                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-                    // Displays the MessageBox.
-                    MessageBox.Show(message, caption, buttons);
+                    messageInputError();    //not between 0 and 255
                 }
                 else
                 {
-                    trackBarGreyscale.Value = value;
+                    trackBarGreyscale.Value = value;    //sets value
                 }
+            }
+            else
+            {
+                messageInputError();    //not an integer!
             };
         }
 
+        private void messageInputError()
+        {
+            //invalid value: reset to 0
+            textBoxSliderValue.Text = "0";
+            trackBarGreyscale.Value = 0;
+            // Initializes the variables to pass to the MessageBox.Show method.
+            string message = "You did not enter a valid number (0-255). Use the slider... Reset to 0.";
+            string caption = "Error Detected in Input";
+            MessageBoxButtons buttons = MessageBoxButtons.OK;
+            // Displays the MessageBox.
+            MessageBox.Show(message, caption, buttons);
+        }
 
         private void adaptPixels()
         {
-
+            
                 for (int x = 0; x < img.Width; x++)
                 {
                     for (int y = 0; y < img.Height; y++)

@@ -28,65 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.trackBarGreyscale = new System.Windows.Forms.TrackBar();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.textBoxSliderValue = new System.Windows.Forms.TextBox();
+            this.trackBarGreyscale = new System.Windows.Forms.TrackBar();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGreyscale)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).BeginInit();
             this.SuspendLayout();
             // 
-            // trackBarGreyscale
+            // splitContainer1
             // 
-            this.trackBarGreyscale.Location = new System.Drawing.Point(97, 12);
-            this.trackBarGreyscale.Maximum = 255;
-            this.trackBarGreyscale.Name = "trackBarGreyscale";
-            this.trackBarGreyscale.Size = new System.Drawing.Size(566, 45);
-            this.trackBarGreyscale.TabIndex = 1;
-            this.trackBarGreyscale.TickFrequency = 10;
-            this.trackBarGreyscale.Scroll += new System.EventHandler(this.trackBarGreyscale_Scroll);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxSliderValue);
+            this.splitContainer1.Panel1.Controls.Add(this.trackBarGreyscale);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.splitContainer1.Panel2.Controls.Add(this.pictureBoxMain);
+            this.splitContainer1.Size = new System.Drawing.Size(584, 441);
+            this.splitContainer1.SplitterDistance = 75;
+            this.splitContainer1.TabIndex = 3;
             // 
             // textBoxSliderValue
             // 
-            this.textBoxSliderValue.Location = new System.Drawing.Point(1, 12);
+            this.textBoxSliderValue.Location = new System.Drawing.Point(0, 0);
             this.textBoxSliderValue.Name = "textBoxSliderValue";
-            this.textBoxSliderValue.Size = new System.Drawing.Size(90, 20);
-            this.textBoxSliderValue.TabIndex = 2;
+            this.textBoxSliderValue.Size = new System.Drawing.Size(54, 20);
+            this.textBoxSliderValue.TabIndex = 4;
             this.textBoxSliderValue.TextChanged += new System.EventHandler(this.textBoxSliderValue_TextChanged);
+            // 
+            // trackBarGreyscale
+            // 
+            this.trackBarGreyscale.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.trackBarGreyscale.Location = new System.Drawing.Point(0, 30);
+            this.trackBarGreyscale.Maximum = 255;
+            this.trackBarGreyscale.Name = "trackBarGreyscale";
+            this.trackBarGreyscale.Size = new System.Drawing.Size(584, 45);
+            this.trackBarGreyscale.TabIndex = 3;
+            this.trackBarGreyscale.TickFrequency = 10;
+            this.trackBarGreyscale.Scroll += new System.EventHandler(this.trackBarGreyscale_Scroll);
             // 
             // pictureBoxMain
             // 
+            this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMain.ErrorImage = null;
             this.pictureBoxMain.Image = global::iPix.Properties.Resources.portugalsmall1;
-            this.pictureBoxMain.Location = new System.Drawing.Point(1, 63);
+            this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
             this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Size = new System.Drawing.Size(662, 361);
+            this.pictureBoxMain.Padding = new System.Windows.Forms.Padding(3);
+            this.pictureBoxMain.Size = new System.Drawing.Size(584, 362);
             this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMain.TabIndex = 0;
+            this.pictureBoxMain.TabIndex = 1;
             this.pictureBoxMain.TabStop = false;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 424);
-            this.Controls.Add(this.textBoxSliderValue);
-            this.Controls.Add(this.trackBarGreyscale);
-            this.Controls.Add(this.pictureBoxMain);
+            this.ClientSize = new System.Drawing.Size(584, 441);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "MainForm";
             this.Text = "iPix";
             this.TopMost = true;
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.trackBarGreyscale)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMain)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBoxMain;
-        private System.Windows.Forms.TrackBar trackBarGreyscale;
+        private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox textBoxSliderValue;
+        private System.Windows.Forms.TrackBar trackBarGreyscale;
+        private System.Windows.Forms.PictureBox pictureBoxMain;
     }
 }
 
