@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.checkBoxInvert = new System.Windows.Forms.CheckBox();
             this.textBoxSliderValue = new System.Windows.Forms.TextBox();
             this.trackBarGreyscale = new System.Windows.Forms.TrackBar();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
@@ -49,20 +51,34 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.checkBoxInvert);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxSliderValue);
             this.splitContainer1.Panel1.Controls.Add(this.trackBarGreyscale);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(3);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.splitContainer1.Panel2.Controls.Add(this.pictureBoxMain);
+            this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(10);
             this.splitContainer1.Size = new System.Drawing.Size(584, 441);
             this.splitContainer1.SplitterDistance = 75;
             this.splitContainer1.TabIndex = 3;
             // 
+            // checkBoxInvert
+            // 
+            this.checkBoxInvert.AutoSize = true;
+            this.checkBoxInvert.Location = new System.Drawing.Point(71, 7);
+            this.checkBoxInvert.Name = "checkBoxInvert";
+            this.checkBoxInvert.Size = new System.Drawing.Size(116, 17);
+            this.checkBoxInvert.TabIndex = 5;
+            this.checkBoxInvert.Text = "mark brighter pixels";
+            this.checkBoxInvert.UseVisualStyleBackColor = true;
+            this.checkBoxInvert.CheckedChanged += new System.EventHandler(this.checkBoxInvert_CheckedChanged);
+            // 
             // textBoxSliderValue
             // 
-            this.textBoxSliderValue.Location = new System.Drawing.Point(0, 0);
+            this.textBoxSliderValue.Location = new System.Drawing.Point(10, 5);
             this.textBoxSliderValue.Name = "textBoxSliderValue";
             this.textBoxSliderValue.Size = new System.Drawing.Size(54, 20);
             this.textBoxSliderValue.TabIndex = 4;
@@ -71,10 +87,10 @@
             // trackBarGreyscale
             // 
             this.trackBarGreyscale.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.trackBarGreyscale.Location = new System.Drawing.Point(0, 30);
+            this.trackBarGreyscale.Location = new System.Drawing.Point(3, 27);
             this.trackBarGreyscale.Maximum = 255;
             this.trackBarGreyscale.Name = "trackBarGreyscale";
-            this.trackBarGreyscale.Size = new System.Drawing.Size(584, 45);
+            this.trackBarGreyscale.Size = new System.Drawing.Size(578, 45);
             this.trackBarGreyscale.TabIndex = 3;
             this.trackBarGreyscale.TickFrequency = 10;
             this.trackBarGreyscale.Scroll += new System.EventHandler(this.trackBarGreyscale_Scroll);
@@ -84,10 +100,9 @@
             this.pictureBoxMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxMain.ErrorImage = null;
             this.pictureBoxMain.Image = global::iPix.Properties.Resources.portugalsmall1;
-            this.pictureBoxMain.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxMain.Location = new System.Drawing.Point(10, 10);
             this.pictureBoxMain.Name = "pictureBoxMain";
-            this.pictureBoxMain.Padding = new System.Windows.Forms.Padding(3);
-            this.pictureBoxMain.Size = new System.Drawing.Size(584, 362);
+            this.pictureBoxMain.Size = new System.Drawing.Size(564, 342);
             this.pictureBoxMain.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxMain.TabIndex = 1;
             this.pictureBoxMain.TabStop = false;
@@ -98,7 +113,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 441);
             this.Controls.Add(this.splitContainer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iPix";
             this.TopMost = true;
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -117,6 +134,7 @@
         private System.Windows.Forms.TextBox textBoxSliderValue;
         private System.Windows.Forms.TrackBar trackBarGreyscale;
         private System.Windows.Forms.PictureBox pictureBoxMain;
+        private System.Windows.Forms.CheckBox checkBoxInvert;
     }
 }
 

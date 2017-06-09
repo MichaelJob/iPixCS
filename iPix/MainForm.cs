@@ -7,9 +7,10 @@ namespace iPix
 {
     public partial class MainForm : Form
     {
-       
+
         private static Bitmap img;
         private static Bitmap original;
+        private static bool invert {get; set;}
 
         public MainForm()
         {
@@ -71,23 +72,57 @@ namespace iPix
 
         private void adaptPixels()
         {
-            
-                for (int x = 0; x < img.Width; x++)
+                try
                 {
-                    for (int y = 0; y < img.Height; y++)
+                    for (int x = 0; x < img.Width; x++)
                     {
-                        var color = original.GetPixel(x, y);    // Get the color of a pixel within img
-                        if ((color.GetBrightness() * 255) < trackBarGreyscale.Value)
+                        for (int y = 0; y < img.Height; y++)
                         {
-                            img.SetPixel(x, y, Color.OrangeRed);
+                            var color = original.GetPixel(x, y);    // Get the color of a pixel within img
+                            if ((color.GetBrightness() * 255) < trackBarGreyscale.Value)
+                            {
+                                if (invert)
+                                {
+                                    img.SetPixel(x, y, color);
+                                }
+                                else
+                                {
+                                     img.SetPixel(x, y, Color.OrangeRed);
+                                }
+                              
+                            }
+                            else
+                            {
+                                if (invert)
+                                {
+                                    img.SetPixel(x, y, Color.OrangeRed);
+                                }
+                                else
+                                {
+                                    img.SetPixel(x, y, color);
+                                }
+                            }
                         }
-                        else
-                        {
-                            img.SetPixel(x, y, color);
-                        }
-                    }
-                };
-                pictureBoxMain.Refresh();
+                    };
+                }
+                catch (Exception e)
+                {
+                    // Initializes the variables to pass to the MessageBox.Show method.
+                    string message = "Oupps - something went wrong: "+e.Message;
+                    string caption = "Bummer!";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    // Displays the MessageBox.
+                    MessageBox.Show(message, caption, buttons);
+            }
+           
+            pictureBoxMain.Refresh();
+           
+        }
+
+        private void checkBoxInvert_CheckedChanged(object sender, EventArgs e)
+        {
+            invert = checkBoxInvert.Checked;
+            adaptPixels();
         }
     }
 }
