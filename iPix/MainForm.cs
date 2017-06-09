@@ -23,7 +23,7 @@ namespace iPix
         private void trackBarGreyscale_Scroll(object sender, EventArgs e)
         {
             textBoxSliderValue.Text = "" + trackBarGreyscale.Value;
-            adaptPixels();
+            CallEditImage();
         }
 
         private void textBoxSliderValue_TextChanged(object sender, EventArgs e)
@@ -31,7 +31,7 @@ namespace iPix
             validateUserEntry();
             if (img != null)
             {
-                adaptPixels();
+                CallEditImage();
             }
        }
 
@@ -70,59 +70,66 @@ namespace iPix
             MessageBox.Show(message, caption, buttons);
         }
 
-        private void adaptPixels()
-        {
-                try
+        private async void CallEditImage() {
+            int value = trackBarGreyscale.Value;
+            img = await editImageAsync(img, original, value);
+            pictureBoxMain.Refresh();
+        }
+
+        private Task<Bitmap> editImageAsync(Bitmap img, Bitmap original, int value) {
+            return Task.Factory.StartNew(()=>editImage(img, original, value));
+        }
+
+        private Bitmap editImage(Bitmap img, Bitmap original, int value) {
+            try
+            {
+                for (int x = 0; x < img.Width; x++)
                 {
-                    for (int x = 0; x < img.Width; x++)
+                    for (int y = 0; y < img.Height; y++)
                     {
-                        for (int y = 0; y < img.Height; y++)
+                        var color = original.GetPixel(x, y);    // Get the color of a pixel within img
+                        if ((color.GetBrightness() * 255) < value)
                         {
-                            var color = original.GetPixel(x, y);    // Get the color of a pixel within img
-                            if ((color.GetBrightness() * 255) < trackBarGreyscale.Value)
+                            if (invert)
                             {
-                                if (invert)
-                                {
-                                    img.SetPixel(x, y, color);
-                                }
-                                else
-                                {
-                                     img.SetPixel(x, y, Color.OrangeRed);
-                                }
-                              
+                                img.SetPixel(x, y, color);
                             }
                             else
                             {
-                                if (invert)
-                                {
-                                    img.SetPixel(x, y, Color.OrangeRed);
-                                }
-                                else
-                                {
-                                    img.SetPixel(x, y, color);
-                                }
+                                img.SetPixel(x, y, Color.OrangeRed);
+                            }
+
+                        }
+                        else
+                        {
+                            if (invert)
+                            {
+                                img.SetPixel(x, y, Color.OrangeRed);
+                            }
+                            else
+                            {
+                                img.SetPixel(x, y, color);
                             }
                         }
-                    };
-                }
-                catch (Exception e)
-                {
-                    // Initializes the variables to pass to the MessageBox.Show method.
-                    string message = "Oupps - something went wrong: "+e.Message;
-                    string caption = "Bummer!";
-                    MessageBoxButtons buttons = MessageBoxButtons.OK;
-                    // Displays the MessageBox.
-                    MessageBox.Show(message, caption, buttons);
+                    }
+                };
             }
-           
-            pictureBoxMain.Refresh();
-           
+            catch (Exception e)
+            {
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Oupps - something went wrong while Imagemanipulation: " + e.Message;
+                string caption = "Bummer!";
+                MessageBoxButtons buttons = MessageBoxButtons.OK;
+                // Displays the MessageBox.
+                MessageBox.Show(message, caption, buttons);
+            }
+            return img;
         }
-
+        
         private void checkBoxInvert_CheckedChanged(object sender, EventArgs e)
         {
             invert = checkBoxInvert.Checked;
-            adaptPixels();
+            CallEditImage();
         }
     }
 }
