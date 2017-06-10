@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -76,8 +77,8 @@ namespace iPix
             pictureBoxMain.Refresh();
         }
 
-        private Task<Bitmap> editImageAsync(Bitmap img, Bitmap original, int value) {
-            return Task.Factory.StartNew(()=>editImage(img, original, value));
+        private async Task<Bitmap> editImageAsync(Bitmap img, Bitmap original, int value) {
+            return await Task.Factory.StartNew(()=>editImage(img, original, value));
         }
 
         private Bitmap editImage(Bitmap img, Bitmap original, int value) {
@@ -115,7 +116,7 @@ namespace iPix
                 };
             }
             catch (Exception e)
-            {
+            {  
                 // Initializes the variables to pass to the MessageBox.Show method.
                 string message = "Oupps - something went wrong while Imagemanipulation: " + e.Message;
                 string caption = "Bummer!";
