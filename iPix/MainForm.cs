@@ -147,15 +147,17 @@ namespace iPix
 
         private void btLoadImage_Click(object sender, EventArgs e)
         {
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Images|*.jpeg;*.png;*.jpg;*.gif";
-            String path = "";
-            if (fileDialog.ShowDialog() == DialogResult.OK) {
-                path = fileDialog.FileName;
-                pictureBoxMain.Image = Image.FromFile(path);
-                img = (Bitmap)pictureBoxMain.Image; //shown image to variable img
-                original = (Bitmap)img.Clone();  //keep copy of original 
-            }
+            using (OpenFileDialog fileDialog = new OpenFileDialog()) {
+                fileDialog.Filter = "Images|*.jpeg;*.png;*.jpg;*.gif";
+                String path = "";
+                if (fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    path = fileDialog.FileName;
+                    pictureBoxMain.Image = Image.FromFile(path);
+                    img = (Bitmap)pictureBoxMain.Image; //shown image to variable img
+                    original = (Bitmap)img.Clone();  //keep copy of original 
+                }
+            } 
         }
     }
 }
