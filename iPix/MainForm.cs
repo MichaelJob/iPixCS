@@ -76,7 +76,7 @@ namespace iPix
         private async void CallEditImage() {
             int value = trackBarGreyscale.Value;
             img = await editImageAsync(img, original, value);
-            pictureBoxMain.Refresh();   
+            pictureBoxMain.Image = img;
         }
 
         private async Task<Bitmap> editImageAsync(Bitmap img, Bitmap original, int value) {
@@ -143,6 +143,19 @@ namespace iPix
             colorDialogMarkColor.ShowDialog();
             markColor = colorDialogMarkColor.Color;
             CallEditImage();
+        }
+
+        private void btLoadImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Images|*.jpeg;*.png;*.jpg;*.gif";
+            String path = "";
+            if (fileDialog.ShowDialog() == DialogResult.OK) {
+                path = fileDialog.FileName;
+                pictureBoxMain.Image = Image.FromFile(path);
+                img = (Bitmap)pictureBoxMain.Image; //shown image to variable img
+                original = (Bitmap)img.Clone();  //keep copy of original 
+            }
         }
     }
 }

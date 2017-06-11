@@ -30,13 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnSelectMarkColor = new System.Windows.Forms.Button();
             this.checkBoxInvert = new System.Windows.Forms.CheckBox();
             this.textBoxSliderValue = new System.Windows.Forms.TextBox();
             this.trackBarGreyscale = new System.Windows.Forms.TrackBar();
             this.pictureBoxMain = new System.Windows.Forms.PictureBox();
             this.colorDialogMarkColor = new System.Windows.Forms.ColorDialog();
-            this.btnSelectMarkColor = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btLoadImage = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -54,6 +55,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btLoadImage);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.btnSelectMarkColor);
             this.splitContainer1.Panel1.Controls.Add(this.checkBoxInvert);
@@ -69,6 +71,25 @@
             this.splitContainer1.Size = new System.Drawing.Size(584, 441);
             this.splitContainer1.SplitterDistance = 75;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(7, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(88, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Brightness value:";
+            // 
+            // btnSelectMarkColor
+            // 
+            this.btnSelectMarkColor.Location = new System.Drawing.Point(296, 4);
+            this.btnSelectMarkColor.Name = "btnSelectMarkColor";
+            this.btnSelectMarkColor.Size = new System.Drawing.Size(121, 23);
+            this.btnSelectMarkColor.TabIndex = 6;
+            this.btnSelectMarkColor.Text = "Choose mark color";
+            this.btnSelectMarkColor.UseVisualStyleBackColor = true;
+            this.btnSelectMarkColor.Click += new System.EventHandler(this.btnSelectMarkColor_Click);
             // 
             // checkBoxInvert
             // 
@@ -112,24 +133,15 @@
             this.pictureBoxMain.TabIndex = 1;
             this.pictureBoxMain.TabStop = false;
             // 
-            // btnSelectMarkColor
+            // btLoadImage
             // 
-            this.btnSelectMarkColor.Location = new System.Drawing.Point(296, 4);
-            this.btnSelectMarkColor.Name = "btnSelectMarkColor";
-            this.btnSelectMarkColor.Size = new System.Drawing.Size(121, 23);
-            this.btnSelectMarkColor.TabIndex = 6;
-            this.btnSelectMarkColor.Text = "Choose mark color";
-            this.btnSelectMarkColor.UseVisualStyleBackColor = true;
-            this.btnSelectMarkColor.Click += new System.EventHandler(this.btnSelectMarkColor_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Brightness value:";
+            this.btLoadImage.Location = new System.Drawing.Point(424, 5);
+            this.btLoadImage.Name = "btLoadImage";
+            this.btLoadImage.Size = new System.Drawing.Size(148, 23);
+            this.btLoadImage.TabIndex = 8;
+            this.btLoadImage.Text = "Load an image";
+            this.btLoadImage.UseVisualStyleBackColor = true;
+            this.btLoadImage.Click += new System.EventHandler(this.btLoadImage_Click);
             // 
             // MainForm
             // 
@@ -162,6 +174,7 @@
         private System.Windows.Forms.ColorDialog colorDialogMarkColor;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSelectMarkColor;
+        private System.Windows.Forms.Button btLoadImage;
     }
 }
 
