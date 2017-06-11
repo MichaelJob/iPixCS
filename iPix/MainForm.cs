@@ -12,6 +12,7 @@ namespace iPix
         private static Bitmap img;
         private static Bitmap original;
         private static bool invert {get; set;}
+        private static Color markColor = Color.AliceBlue;
 
         public MainForm()
         {
@@ -19,6 +20,7 @@ namespace iPix
             textBoxSliderValue.Text = "" + trackBarGreyscale.Value;
             img = (Bitmap)pictureBoxMain.Image; //shown image
             original = (Bitmap)img.Clone();  //keep copy of original
+            colorDialogMarkColor.AllowFullOpen = true;
         }
 
         private void trackBarGreyscale_Scroll(object sender, EventArgs e)
@@ -74,7 +76,7 @@ namespace iPix
         private async void CallEditImage() {
             int value = trackBarGreyscale.Value;
             img = await editImageAsync(img, original, value);
-            pictureBoxMain.Refresh();
+            pictureBoxMain.Refresh();   
         }
 
         private async Task<Bitmap> editImageAsync(Bitmap img, Bitmap original, int value) {
@@ -82,47 +84,50 @@ namespace iPix
         }
 
         private Bitmap editImage(Bitmap img, Bitmap original, int value) {
-            try
+            lock (img)
             {
-                for (int x = 0; x < img.Width; x++)
+                try
                 {
-                    for (int y = 0; y < img.Height; y++)
+                    for (int x = 0; x < img.Width; x++)
                     {
-                        var color = original.GetPixel(x, y);    // Get the color of a pixel within img
-                        if ((color.GetBrightness() * 255) < value)
+                        for (int y = 0; y < img.Height; y++)
                         {
-                            if (invert)
+                            var color = original.GetPixel(x, y);    // Get the color of a pixel within img
+                            if ((color.GetBrightness() * 255) < value)
                             {
-                                img.SetPixel(x, y, color);
-                            }
-                            else
-                            {
-                                img.SetPixel(x, y, Color.OrangeRed);
-                            }
+                                if (invert)
+                                {
+                                    img.SetPixel(x, y, color);
+                                }
+                                else
+                                {
+                                    img.SetPixel(x, y, markColor);
+                                }
 
-                        }
-                        else
-                        {
-                            if (invert)
-                            {
-                                img.SetPixel(x, y, Color.OrangeRed);
                             }
                             else
                             {
-                                img.SetPixel(x, y, color);
+                                if (invert)
+                                {
+                                    img.SetPixel(x, y, markColor);
+                                }
+                                else
+                                {
+                                    img.SetPixel(x, y, color);
+                                }
                             }
                         }
-                    }
-                };
-            }
-            catch (Exception e)
-            {  
-                // Initializes the variables to pass to the MessageBox.Show method.
-                string message = "Oupps - something went wrong while Imagemanipulation: " + e.Message;
-                string caption = "Bummer!";
-                MessageBoxButtons buttons = MessageBoxButtons.OK;
-                // Displays the MessageBox.
-                MessageBox.Show(message, caption, buttons);
+                    };
+                }
+                catch (Exception e)
+                {
+                    // Initializes the variables to pass to the MessageBox.Show method.
+                    string message = "Oupps - something went wrong while Imagemanipulation: " + e.Message;
+                    string caption = "Bummer!";
+                    MessageBoxButtons buttons = MessageBoxButtons.OK;
+                    // Displays the MessageBox.
+                    MessageBox.Show(message, caption, buttons);
+                }
             }
             return img;
         }
@@ -130,6 +135,13 @@ namespace iPix
         private void checkBoxInvert_CheckedChanged(object sender, EventArgs e)
         {
             invert = checkBoxInvert.Checked;
+            CallEditImage();
+        }
+
+        private void btnSelectMarkColor_Click(object sender, EventArgs e)
+        {
+            colorDialogMarkColor.ShowDialog();
+            markColor = colorDialogMarkColor.Color;
             CallEditImage();
         }
     }
